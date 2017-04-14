@@ -20,6 +20,7 @@ Route::get('/links', 'PageController@Links');
 Route::get('/link/add', 'LinkController@addLink');
 Route::get('/link/check', 'LinkController@checkLink');
 Route::get('/link/short/check', 'LinkController@checkShortUrl');
+Route::get('/template/load' , 'PageController@getTemplate');
 
 Route::post('/link/add', 'LinkController@storeLink');
 

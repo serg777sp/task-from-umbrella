@@ -15,12 +15,32 @@ class PageController extends Controller
 	return view('home', $viewData);
     }
 
-    //Page for showing all links
+    //Method for getting all links
     public function links() {
-	$viewData = [
-	    'title' => 'All Links',
-	    'links' => Link::all(),
-	];
-	return view('links', $viewData);
+	try{
+	    $res['errors'] = false;
+	    $viewData = [
+		'links' => Link::all(),
+	    ];
+	    $res['links'] = view('links', $viewData)->render();
+	    return response()->json($res);
+	} catch (Exception $e){
+	    $res['errors'] = true;
+	    $res['message'] = $e->getMessage();
+	    return response()->json($res);
+	}
+    }
+
+    //Method for getting templates
+    public function getTemplate(Request $req) {
+	try{
+	    $res['errors'] = false;
+	    $res['template'] = file_get_contents('../resources/views/templates/'.$req->template.'.blade.php');
+	    return response()->json($res);
+	} catch (Exception $e){
+	    $res['errors'] = TRUE;
+	    $res['message'][] = $e->getMessage();
+	    return response()->json($res);
+	}
     }
 }

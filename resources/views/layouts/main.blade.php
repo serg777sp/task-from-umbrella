@@ -46,13 +46,20 @@
 
     <!-- Begin page content -->
     <div class="container">
-	@yield('content')
+	<div class="panel panel-default">
+	    <div class="panel-heading">All links</div>
+	    <div class="panel-body" id="main">
+	    </div>
+	</div>
     </div>
 
     <div id="footer">
       <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
       </div>
+    </div>
+    <div class="hidden">
+	@yield('templates');
     </div>
 
 

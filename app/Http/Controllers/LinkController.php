@@ -9,13 +9,13 @@ use App\Models\Link;
 class LinkController extends Controller
 {
 
-    //page with form for creating new a link
-    public function addLink() {
-	$viewData = [
-	    'title' => 'Addding new link'
-	];
-	return view('addLink', $viewData);
-    }
+//    //page with form for creating new a link
+//    public function addLink() {
+//	$viewData = [
+//	    'title' => 'Addding new link'
+//	];
+//	return view('addLink', $viewData);
+//    }
 
     //method for saving in the database a new link
     public function storeLink(Request $req) {
@@ -24,7 +24,7 @@ class LinkController extends Controller
 	$data['original_url'] = $req->original_url;
 	$data['short_url'] = $req->short_url ? $req->short_url : Link::generateShortUrl();
 	Link::create($data);
-	return redirect('/links');
+	return redirect('/#links');
     }
 
     //method for saving in the database a new link through api
