@@ -46,6 +46,15 @@
 
     <!-- Begin page content -->
     <div class="container">
+	@if (count($errors) > 0)
+	    <div class="alert alert-danger">
+		<ul>
+		    @foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+		    @endforeach
+		</ul>
+	    </div>
+	@endif
 	<div class="panel panel-default">
 	    <div class="panel-heading">All links</div>
 	    <div class="panel-body" id="main">
