@@ -8,6 +8,9 @@ use App\Models\Link;
 
 class LinkController extends Controller
 {
+    //array with http codes for check url
+    private $available_http_codes = [200,302];
+
     //page with form for creating new a link
     public function addLink() {
 	$viewData = [
@@ -33,7 +36,7 @@ class LinkController extends Controller
 		$res['messages'] = $validateRes;
 	    } elseif (!$this->checkUrl($req->original_url)){
 		$res['errors'] = true;
-		$res['messages'][] = 'Url not available or redirectable! Please, enter a correct url';
+		$res['messages'][] = 'Url not available or answered with error! Please, enter a correct url';
 	    }
 	    return response()->json($res);
 	} catch(Exception $e){
@@ -66,7 +69,7 @@ class LinkController extends Controller
 	// Timeout in seconds
 	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 	curl_exec($ch);
-	if(curl_getinfo($ch)['http_code'] == 200){
+	if(in_array(curl_getinfo($ch)['http_code'], $this->available_http_codes)){
 	    return true;
 	}
 	return false;

@@ -22,3 +22,10 @@ Route::get('/link/check', 'LinkController@checkLink');
 Route::get('/link/short/check', 'LinkController@checkShortUrl');
 
 Route::post('/link/add', 'LinkController@storeLink');
+
+Route::group(['middleware' => 'redirect'], function(){
+    Route::get('/{short}', function($short){
+	return redirect('/'.$short);
+    });
+});
+
