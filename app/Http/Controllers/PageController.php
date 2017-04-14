@@ -19,10 +19,7 @@ class PageController extends Controller
     public function links() {
 	try{
 	    $res['errors'] = false;
-	    $viewData = [
-		'links' => Link::all(),
-	    ];
-	    $res['links'] = view('links', $viewData)->render();
+	    $res['links'] = view('links', ['links' => Link::all()])->render();
 	    return response()->json($res);
 	} catch (Exception $e){
 	    $res['errors'] = true;
@@ -42,5 +39,9 @@ class PageController extends Controller
 	    $res['message'][] = $e->getMessage();
 	    return response()->json($res);
 	}
+    }
+
+    public function readme() {
+	return view('readme', ['title' => 'Readme']);
     }
 }

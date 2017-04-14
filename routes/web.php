@@ -17,9 +17,15 @@
 
 Route::get('/','PageController@index');
 Route::get('/links', 'PageController@Links');
-Route::get('/link/add', 'LinkController@addLink');
-Route::get('/link/check', 'LinkController@checkLink');
-Route::get('/link/short/check', 'LinkController@checkShortUrl');
+
+Route::group(['prefix' => 'link'], function(){
+    Route::get('/add', 'LinkController@addLink');
+    Route::get('/check', 'LinkController@checkLink');
+    Route::get('/short/check', 'LinkController@checkShortUrl');
+
+    Route::get('/readme', 'PageController@readme');
+});
+
 Route::get('/template/load' , 'PageController@getTemplate');
 
 Route::post('/link/add', 'LinkController@storeLink');
