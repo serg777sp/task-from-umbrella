@@ -22,17 +22,17 @@
 	<div>
 	    <code>git clone https://github.com/serg777sp/task-from-umbrella.git</code><br>
 	    <code>cd task-from-umbrella && composer install</code><br>
-	    <code>cp .env.example .env && nano .env</code>
+	    <code>cp .env.example .env && nano .env</code><br>
 	</div>
 	<p>After, you need create database tables and generate the app key. For it use to the console laravel interface - artisan.</p>
 	<div>
 	    <code>php artisan migrate</code><br>
-	    <code>php artisan key:generate</code>
+	    <code>php artisan key:generate</code><br>
 	</div>
 	<p>All ready! Now you need configure your server (apache or nginx). The start point of app in the public directory(public/index.php).<br>
 	P.S. It may also be necessary to set rights on the storage directory.</p>
 	<div>
-	    <code>sudo chmod 777 storage/ -R</code>
+	    <code>sudo chmod 777 storage/ -R</code><br>
 	</div>
     </div>
 </div>
