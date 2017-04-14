@@ -8,8 +8,6 @@ use App\Models\Link;
 
 class LinkController extends Controller
 {
-    //array with http codes for check url
-    private $available_http_codes = [200,302];
 
     //page with form for creating new a link
     public function addLink() {
@@ -22,7 +20,10 @@ class LinkController extends Controller
     //method for saving in the database a new link
     public function storeLink(Request $req) {
 	$this->validate($req, $this->rules());
-	Link::create($req->all());
+	if(!Link::checkUrl($req->original_url)) return redirect('/link/add');
+	$data['original_url'] = $req->original_url;
+	$data['short_url'] = $req->short_url ? $req->short_url : Link::generateShortUrl();
+	Link::create($data);
 	return redirect('/links');
     }
 
@@ -34,7 +35,7 @@ class LinkController extends Controller
 	    if($validateRes){
 		$res['errors'] = true;
 		$res['messages'] = $validateRes;
-	    } elseif (!$this->checkUrl($req->original_url)){
+	    } elseif (!Link::checkUrl($req->original_url)){
 		$res['errors'] = true;
 		$res['messages'][] = 'Url not available or answered with error! Please, enter a correct url';
 	    }
@@ -59,22 +60,7 @@ class LinkController extends Controller
 	}
     }
 
-    private function checkUrl($url) {
-
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-	// Timeout in seconds
-	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-	curl_exec($ch);
-	if(in_array(curl_getinfo($ch)['http_code'], $this->available_http_codes)){
-	    return true;
-	}
-	return false;
-    }
-
+    //validations rules
     private function rules() {
 	return [
 	    'original_url' => 'url',
@@ -82,6 +68,7 @@ class LinkController extends Controller
 	];
     }
 
+    //method for getting a validations errors messages array
     private function getValidateResult($arrayData) {
 	$validator = Validator::make($arrayData, $this->rules());
         if ($validator->fails()) {
