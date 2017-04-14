@@ -17,18 +17,21 @@
     <h4>Installation of this application</h4>
     <p>
 	This is not difficult. It is several console commands. In the first you need clone this repository.Go to the directory with app and installed requiries. Rename (or copy) .env.example on .env. This file сontains application setting and minimum that you need to filled it is database settings.
-
-	<ol>
-	    <li><code>git clone https://github.com/serg777sp/task-from-umbrella.git</code></li>
-	    <li><code>cd task-from-umbrella && composer install</code></li>
-	    <li><code>cp .env.example .env && nano .env</code></li>
-	</ol>
+	<code>
+	    <ol>
+		<li>git clone https://github.com/serg777sp/task-from-umbrella.git</li>
+		<li>cd task-from-umbrella && composer install</li>
+		<li>cp .env.example .env && nano .env</li>
+	    </ol>
+	</code>
 
 	After, you need create database tables and generate the app key. For it use to the console laravel interface - artisan.
-	<ol>
-	    <li><code>php artisan migrate</code></li>
-	    <li><code>php artisan key:generate</code></li>
-	</ol>
+	<code>
+	    <ol>
+		<li><code>php artisan migrate</code></li>
+		<li><code>php artisan key:generate</code></li>
+	    </ol>
+	</code>
 	All ready! Now you need configure your server (apache or nginx). The start point of app in the public directory(public/index.php).<br>
 	P.S. It may also be necessary to set rights on the storage directory.
 	<code>
