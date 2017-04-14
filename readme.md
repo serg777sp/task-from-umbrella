@@ -30,7 +30,8 @@
 	    <code>php artisan key:generate</code><br>
 	</div>
 	<p>All ready! Now you need configure your server (apache or nginx). The start point of app in the public directory(public/index.php).<br>
-	P.S. It may also be necessary to set rights on the storage directory.</p>
+	P.S. For active the remove old links function you need added a cron task on  daily start the console command <code>php artisan link:removeOld</code><br>
+	It may also be necessary to set rights on the storage directory.</p>
 	<div>
 	    <code>sudo chmod 777 storage/ -R</code><br>
 	</div>

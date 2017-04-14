@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Task from Umbrella</a>
         </div>
 	@include('partials.menu')<!--/.nav-collapse -->
       </div>
@@ -55,7 +55,7 @@
 
     <div id="footer">
       <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+	  <p class="text-muted">&#169; Segey Posunko 2017. <smal><a href="mailto:serg777sp@mail.ru">send mail me</a></smal></p>
       </div>
     </div>
     <div class="hidden">
