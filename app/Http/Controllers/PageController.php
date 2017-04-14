@@ -19,7 +19,7 @@ class PageController extends Controller
     public function links() {
 	$viewData = [
 	    'title' => 'All Links',
-	    'links' => Link::all()
+	    'links' => Link::all(),
 	];
 	return view('links', $viewData);
     }
